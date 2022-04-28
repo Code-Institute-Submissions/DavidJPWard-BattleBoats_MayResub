@@ -1,6 +1,7 @@
 from multiprocessing.sharedctypes import Value
 from pickle import TRUE
 from tkinter import N
+import random
 
 boardSize = 5
 shipNum = 4
@@ -20,13 +21,21 @@ class board():
             print(" ".join(row))
 
 
+
 def populate_board(board):
+    newship = random.randint(1, board.size),random.randint(1, board.size)
+    print(f"{board.type} board, ship at {newship}")
+    board.ships.append(newship)
+
     
 def make_guess():
+    print()
 
-def valid_coordinates(x, y, board)
+def valid_coordinates(x, y, board):
+    print()
 
-def play_game(computer_board, player_board)
+def play_game(computer_board, player_board):
+    print()
 
 
 def Menu():
@@ -36,7 +45,7 @@ def Menu():
     print("           "+"-" * 35)
     print("               Welcome to BATTLE BOATS")
     print(f"           board size: {boardSize}, number of ships: {shipNum}")
-    print(f"           current score -- player: {player_score}   computer: {computer_score}")
+    #print(f"           current score -- player: {player_score}   computer: {computer_score}")
     print("           " +"-" * 35)
     print(f"q: start game    w: change Board size    e: Change Ship Number \n")
 
@@ -97,6 +106,10 @@ def newGame():
     
     player_Board = board(player_name, boardSize, shipNum, "player")
     computer_board = board("computer", boardSize, shipNum, "computer")
+
+    for i in range(shipNum):
+        populate_board(player_Board)
+        populate_board(computer_board)
 
 
 
