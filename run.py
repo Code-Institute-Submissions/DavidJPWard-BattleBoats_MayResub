@@ -1,41 +1,49 @@
 from multiprocessing.sharedctypes import Value
 from pickle import TRUE
+from re import X
 from tkinter import N
 import random
+
+from scripts.player_Board import Player_board
 
 boardSize = 5
 shipNum = 4
 
-class board():
-    def __init__(self, name, size, numOfShips, type):
-        self.name = name
-        self.size = size
-        self.board = [["." for x in range(size)] for y in range(size)]
-        self.numOfShips = numOfShips
-        self.type = type
-        self.ships = []
-        self.guesses = []
-
-    def print_board(self):
-        for row in self.board:
-            print(" ".join(row))
 
 
 
 def populate_board(board):
-    newship = random.randint(1, board.size),random.randint(1, board.size)
-    print(f"{board.type} board, ship at {newship}")
-    board.ships.append(newship)
+    while True:
+        newship = random.randint(0, board.size-1),random.randint(0, board.size-1)
+        if newship not in board.ships:
+            board.ships.append(newship)
+            break
 
     
 def make_guess():
-    print()
+    x_guess = input("please choose an x coordinate: ")
+    y_guess = input("please choose a y coordinate: ")
+    return x_guess, y_guess
 
 def valid_coordinates(x, y, board):
     print()
 
-def play_game(computer_board, player_board):
-    print()
+def play_game(player_board, computer_board):
+    player_score = 0
+    computer_score = 0
+    while player_score < shipNum and computer_score < shipNum:
+        player_board.display_player_ships()
+        computer_board.print_board()
+        player_board.print_board()
+        x,y = make_guess()
+        if computer_board.guess(x,y) == True:
+            player_score += 1
+        print(f"player score: {player_score}, ship number : {shipNum}")
+
+        
+    
+    
+
 
 
 def Menu():
@@ -67,7 +75,7 @@ def changeBoardSize():
     print("please pick a number between 4 and 10 to change the game board")
     while True:
         new_size = input()
-        if(validate_int(new_size, 2, 4, 10)):
+        if(validate_int(new_size, 2, 3, 10)):
             break
         print("Please Pick Again: ")
     return new_size
@@ -102,14 +110,16 @@ def validate_int(input, length, min_value, max_value):
 
 
 def newGame():
-    player_name = input("What is your name")
+    player_name = input("What is your name?: ")
     
-    player_Board = board(player_name, boardSize, shipNum, "player")
-    computer_board = board("computer", boardSize, shipNum, "computer")
+    player_board = Player_board(player_name, boardSize, shipNum, "player")
+    computer_board = Computer_Board("computer", boardSize, shipNum, "computer")
 
     for i in range(shipNum):
-        populate_board(player_Board)
+        populate_board(player_board)
         populate_board(computer_board)
+
+    play_game(player_board, computer_board)
 
 
 
