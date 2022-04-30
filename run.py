@@ -1,14 +1,14 @@
 from multiprocessing.sharedctypes import Value
 from pickle import TRUE
 from re import X
-from tkinter import N
+from tkinter import N, Y
 import random
 
-from scripts.player_Board import Player_board
+from scripts.Player_Board import Player_Board
+from scripts.Computer_Board import Computer_Board
 
 boardSize = 5
 shipNum = 4
-
 
 
 
@@ -20,24 +20,27 @@ def populate_board(board):
             break
 
     
-def make_guess():
-    x_guess = input("please choose an x coordinate: ")
-    y_guess = input("please choose a y coordinate: ")
-    return x_guess, y_guess
 
-def valid_coordinates(x, y, board):
-    print()
+
+
+
 
 def play_game(player_board, computer_board):
+    player_board.display_player_ships()
+    computer_board.display_computer_ships()
+    print("---")
+    for i in computer_board.ships:
+        print(i)
     player_score = 0
     computer_score = 0
     while player_score < shipNum and computer_score < shipNum:
-        player_board.display_player_ships()
+        
         computer_board.print_board()
         player_board.print_board()
-        x,y = make_guess()
+        x,y = make_guess(computer_board)
         if computer_board.guess(x,y) == True:
             player_score += 1
+        player_board.guess(random.randint(0,boardSize-1),random.randint(0,boardSize-1))
         print(f"player score: {player_score}, ship number : {shipNum}")
 
         
@@ -75,7 +78,7 @@ def changeBoardSize():
     print("please pick a number between 4 and 10 to change the game board")
     while True:
         new_size = input()
-        if(validate_int(new_size, 2, 3, 10)):
+        if(validate_int(new_size, 2, 4, 10)):
             break
         print("Please Pick Again: ")
     return new_size
@@ -108,11 +111,18 @@ def validate_int(input, length, min_value, max_value):
     print("passed validation")
     return True
 
+def valid_coordinates(x, y, board):
+    if (x,y) not in board.guesses:
+        return True
+    else:
+        print(f"co-ordinates ({x}, {y}) have already been guessed, pick again")
+        return False
+
 
 def newGame():
     player_name = input("What is your name?: ")
     
-    player_board = Player_board(player_name, boardSize, shipNum, "player")
+    player_board = Player_Board(player_name, boardSize, shipNum, "player")
     computer_board = Computer_Board("computer", boardSize, shipNum, "computer")
 
     for i in range(shipNum):
@@ -121,6 +131,17 @@ def newGame():
 
     play_game(player_board, computer_board)
 
+def make_guess(board):
+    while True:
+        x_guess = input("please choose an x coordinate: ")
+        validate_int(x_guess, 1 if boardSize < 10 else 2, 0, boardSize -1)
+        
+        y_guess = input("please choose a y coordinate: ")
+        validate_int(y_guess, 1 if boardSize < 10 else 2, 0, boardSize -1)
+
+        if valid_coordinates(x_guess, y_guess, board) == True:
+            break
+    return x_guess, y_guess
 
 
 def Main():

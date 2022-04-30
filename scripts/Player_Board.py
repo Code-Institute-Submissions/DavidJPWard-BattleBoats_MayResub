@@ -1,4 +1,4 @@
-from BATTLEBOATS.Board import board
+from scripts.Board import Board
 
 
 class Player_Board(Board):
