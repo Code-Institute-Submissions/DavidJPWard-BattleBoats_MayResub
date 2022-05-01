@@ -13,12 +13,16 @@ shipNum = 4
 
 
 def populate_board(board):
+    """
     while True:
         newship = random.randint(0, board.size-1),random.randint(0, board.size-1)
         if newship not in board.ships:
             board.ships.append(newship)
-            break
-
+            break"""
+    board.ships.append((3,0))
+    board.ships.append((2,4))
+    board.ships.append((0,1))
+    board.ships.append((4,1))
     
 
 
@@ -124,6 +128,8 @@ def newGame():
     
     player_board = Player_Board(player_name, boardSize, shipNum, "player")
     computer_board = Computer_Board("computer", boardSize, shipNum, "computer")
+    player_board.board.reverse()
+    computer_board.board.reverse()
 
     for i in range(shipNum):
         populate_board(player_board)

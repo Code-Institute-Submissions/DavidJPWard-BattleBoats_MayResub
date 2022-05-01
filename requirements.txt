@@ -1,1 +1,13 @@
 # Your requirements go here
+
+
+    def print_board(self):
+        j = int(0)
+        print(f"{self.name}'s board")
+        for row in reversed(self.board):
+            j = 0
+            for i in row:
+                row[j] = j
+                j = j + 1
+        print(" ".join(str(row)))
+        

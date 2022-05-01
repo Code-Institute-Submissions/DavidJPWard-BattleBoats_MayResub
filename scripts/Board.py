@@ -15,7 +15,9 @@ class Board():
             i = i + 1
             print(str(i) + " " + " ".join(row))
 
-        def print_board(self):
+
+    """
+    def print_board(self):
         j = int(0)
         print(f"{self.name}'s board")
         for row in reversed(self.board):
@@ -24,18 +26,18 @@ class Board():
                 row[j] = j
                 j = j + 1
         print(" ".join(str(row)))
-        
+    """
 
     def guess(self, x, y):
         x = int(x)
         y = int(y)
         self.guesses.append([x,y])
-        self.board[x][y] = "X"
+        self.board[y][x] = "X"
 
         print(f"{self.type} board, guesses: {self.guesses}")
 
         if (x,y) in self.ships:
-            self.board[x][y] = "!"
+            self.board[y][x] = "!"
             return True
         else:
             return False
