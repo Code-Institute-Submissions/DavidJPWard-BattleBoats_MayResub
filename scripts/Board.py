@@ -9,9 +9,22 @@ class Board():
         self.guesses = []
 
     def print_board(self):
+        i = 0
         print(f"{self.name}'s board")
         for row in reversed(self.board):
-            print(" ".join(row))
+            i = i + 1
+            print(str(i) + " " + " ".join(row))
+
+        def print_board(self):
+        j = int(0)
+        print(f"{self.name}'s board")
+        for row in reversed(self.board):
+            j = 0
+            for i in row:
+                row[j] = j
+                j = j + 1
+        print(" ".join(str(row)))
+        
 
     def guess(self, x, y):
         x = int(x)
