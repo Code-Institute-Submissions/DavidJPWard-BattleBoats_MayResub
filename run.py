@@ -22,7 +22,11 @@ def populate_board(board):
         if newship not in board.ships:
             board.ships.append(newship)
             break
-    
+
+
+
+
+
 
 def play_game(player_board, computer_board):
     """
@@ -30,24 +34,29 @@ def play_game(player_board, computer_board):
     and breaks when either players score equals the number of ships. 
     """
     player_board.display_player_ships()
-    print("---")
-    for i in computer_board.ships:
-        print(i)
+
     player_score = 0
     computer_score = 0
     while player_score < shipNum and computer_score < shipNum:
         
+        
+
         computer_board.print_board()
         player_board.print_board()
-        x,y = player_board.make_guess(computer_board, validate_int())
-        if computer_board.guess(x,y) == True:
+
+        if computer_board.guesses:
+            print(f"Player Score: {player_score}, Computer Score : {computer_score}")
+            computer_board.print_player_guesses()
+
+        print("\n")
+
+        x,y = make_guess(computer_board)
+        if computer_board.guess_against(x, y, player_board) == True:
             player_score += 1
         
-        if player_board.guess(random.randint(0,boardSize-1),random.randint(0,boardSize-1)) == True:
+        if player_board.guess_against(random.randint(0,boardSize-1),random.randint(0,boardSize-1), computer_board) == True:
             computer_score += 1
 
-        print(f"player score: {player_score}, ship number : {shipNum}")
-    
     computer_board.print_board()
     player_board.print_board()
 
@@ -63,10 +72,31 @@ def play_game(player_board, computer_board):
     Menu()
 
 
+def make_guess(board):
+    """
+    function that creates a tuple out of the inputs made by the player, checks they are valid and returns it
+    """
+    while True:
+        while True:
+            x_guess = input(f"please choose an x coordinate(a number between 0 and {boardSize -1}): ")
+            if validate_int(x_guess, 1, 0, board.size -1) == True:
+                break
+            print("please pick again")
 
+        while True:
+            y_guess = input(f"please choose an y coordinate(a number between 0 and {boardSize-1}): ")
+            if validate_int(y_guess, 1, 0, board.size -1) == True:
+                break
+            print("please pick again")
+
+        if new_coordinates(x_guess, y_guess, board) == True:
+            break
+
+    return x_guess, y_guess    
         
     
     
+
 
 
 
@@ -82,14 +112,14 @@ def Menu():
     print(f"           board size: {boardSize}, number of ships: {shipNum}")
     #print(f"           current score -- player: {player_score}   computer: {computer_score}")
     print("           " +"-" * 35)
-    print(f"q: start game    w: change Board size    e: Change Ship Number \n")
+    print(f"q: Start Game    w: Change Board Size    e: Change Ship Number \n")
 
     option = input("Please choose and option: ").lower()
 
     while True:
         if option in ("q", "w", "e"):
             break
-        print("Invalid option, please press q, w or e")
+        print("Invalid option, please press q, w or e\n")
         option = input("Please choose and option: ").lower()
     
     if(option == "q"):
@@ -146,10 +176,9 @@ def validate_int(input, length, min_value, max_value):
     except ValueError as e:
         print(f"Invalid: {e}\n")
         return False
-    print("passed validation")
     return True
 
-def valid_coordinates(x, y, board):
+def new_coordinates(x, y, board):
     """
     checks if a set of co ordinates have already been guessed, returns true if they were new.
     """
@@ -169,6 +198,7 @@ def newGame():
     """
 
     player_name = input("What is your name?: ")
+    print("\n")
     
     player_board = Player_Board(player_name, boardSize, shipNum, "player")
     computer_board = Computer_Board("computer", boardSize, shipNum, "computer")
@@ -178,7 +208,6 @@ def newGame():
     for i in range(shipNum):
         populate_board(player_board)
         populate_board(computer_board)
-
     play_game(player_board, computer_board)
 
 

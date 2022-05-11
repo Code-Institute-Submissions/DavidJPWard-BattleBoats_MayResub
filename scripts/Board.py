@@ -9,37 +9,30 @@ class Board():
         self.guesses = []
 
     def print_board(self):
-        i = 0
-        print(f"{self.name}'s board")
+        """
+        function that prints the game board
+        """
+        print(f"{self.name}'s Board")
         for row in reversed(self.board):
-            i = i + 1
-            print(str(i) + " " + " ".join(row))
+            print(" "+" ".join(row))
 
 
-    """
-    def print_board(self):
-        j = int(0)
-        print(f"{self.name}'s board")
-        for row in reversed(self.board):
-            j = 0
-            for i in row:
-                row[j] = j
-                j = j + 1
-        print(" ".join(str(row)))
-    """
-
-    def guess(self, x, y):
+    def guess_against(self, x, y, enemy):
+        """
+        function that is called when making a guess against this board, notifies if it was a hit or a miss 
+        and returns true or false respectively
+        """
         x = int(x)
         y = int(y)
         self.guesses.append([x,y])
         self.board[y][x] = "X"
 
-        print(f"{self.type} board, guesses: {self.guesses}")
-
         if (x,y) in self.ships:
             self.board[y][x] = "!"
+            print(f"{enemy.name} has hit!")
             return True
         else:
+            print(f"{enemy.name} has missed.")
             return False
 
 
