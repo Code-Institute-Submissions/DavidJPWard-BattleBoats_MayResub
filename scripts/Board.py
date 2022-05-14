@@ -1,10 +1,10 @@
 class Board():
-    def __init__(self, name, size, numOfShips, type):
+    def __init__(self, name, size, numOfShips, board_type):
         self.name = name
         self.size = size
         self.board = [["." for x in range(size)] for y in range(size)]
         self.numOfShips = numOfShips
-        self.type = type
+        self.type = board_type
         self.ships = []
         self.guesses = []
 
@@ -19,8 +19,8 @@ class Board():
 
     def guess_against(self, x, y, enemy):
         """
-        function that is called when making a guess against this board, notifies if it was a hit or a miss 
-        and returns true or false respectively
+        function that is called when making a guess against this board, notifies if it was a 
+        hit or a miss and returns true or false respectively
         """
         x = int(x)
         y = int(y)
@@ -34,6 +34,3 @@ class Board():
         else:
             print(f"{enemy.name} has missed.")
             return False
-
-
-

@@ -1,7 +1,7 @@
-from multiprocessing.sharedctypes import Value
-from pickle import TRUE
-from re import X
-from tkinter import N, Y
+"""
+this is battle boats, this file contains the functions to play the game as well as an abstract 
+class named playerboard and two inherited classes for a human and computer player.
+"""
 import random
 
 from scripts.Player_Board import Player_Board
@@ -11,11 +11,10 @@ boardSize = 5
 shipNum = 4
 
 
-
 def populate_board(board):
     """
-    randomly populates the game board with ships. it creates a ship, checks a ship hasnt not 
-    already been made at that location and then adds it to thats boards list of ships 
+    randomly populates the game board with ships. it creates a ship, checks a ship hasnt not
+    already been made at that location and then adds it to thats boards list of ships
     """
     while True:
         newship = random.randint(0, board.size-1),random.randint(0, board.size-1)
@@ -30,17 +29,14 @@ def populate_board(board):
 
 def play_game(player_board, computer_board):
     """
-    called when the game has finished setting up, calls for guesses to be continously entered via a loop
-    and breaks when either players score equals the number of ships. 
+    called when the game has finished setting up, calls for guesses to be continously 
+    entered via a loop and breaks when either players score equals the number of ships. 
     """
     player_board.display_player_ships()
 
     player_score = 0
     computer_score = 0
     while player_score < shipNum and computer_score < shipNum:
-        
-        
-
         computer_board.print_board()
         player_board.print_board()
 
@@ -51,10 +47,11 @@ def play_game(player_board, computer_board):
         print("\n")
 
         x,y = make_guess(computer_board)
-        if computer_board.guess_against(x, y, player_board) == True:
+        if computer_board.guess_against(x, y, player_board) is True:
             player_score += 1
         
-        if player_board.guess_against(random.randint(0,boardSize-1),random.randint(0,boardSize-1), computer_board) == True:
+        if player_board.guess_against(random.randint(0,boardSize-1),
+                                    random.randint(0,boardSize-1), computer_board) is True:
             computer_score += 1
 
     computer_board.print_board()
@@ -69,27 +66,28 @@ def play_game(player_board, computer_board):
     else:
         print("game was a draw")
     input("please any key to continue/n")
-    Menu()
+    menu()
 
 
 def make_guess(board):
     """
-    function that creates a tuple out of the inputs made by the player, checks they are valid and returns it
+    function that creates a tuple out of the inputs made by the player, checks 
+    they are valid and returns it
     """
     while True:
         while True:
             x_guess = input(f"please choose an x coordinate(a number between 0 and {boardSize -1}): ")
-            if validate_int(x_guess, 1, 0, board.size -1) == True:
+            if validate_int(x_guess, 1, 0, board.size -1) is True:
                 break
             print("please pick again")
 
         while True:
             y_guess = input(f"please choose an y coordinate(a number between 0 and {boardSize-1}): ")
-            if validate_int(y_guess, 1, 0, board.size -1) == True:
+            if validate_int(y_guess, 1, 0, board.size -1) is True:
                 break
             print("please pick again")
 
-        if new_coordinates(x_guess, y_guess, board) == True:
+        if new_coordinates(x_guess, y_guess, board) is True:
             break
 
     return x_guess, y_guess    
@@ -100,7 +98,7 @@ def make_guess(board):
 
 
 
-def Menu():
+def menu():
     """
     Main menu of the game, here you can change settings and start a game.
     """
@@ -112,7 +110,7 @@ def Menu():
     print(f"           board size: {boardSize}, number of ships: {shipNum}")
     #print(f"           current score -- player: {player_score}   computer: {computer_score}")
     print("           " +"-" * 35)
-    print(f"q: Start Game    w: Change Board Size    e: Change Ship Number \n")
+    print("q: Start Game    w: Change Board Size    e: Change Ship Number \n")
 
     option = input("Please choose and option: ").lower()
 
@@ -122,56 +120,56 @@ def Menu():
         print("Invalid option, please press q, w or e\n")
         option = input("Please choose and option: ").lower()
     
-    if(option == "q"):
-        newGame()
-    elif(option == "w"):
-        boardSize = int(changeBoardSize())
-        Menu()
-    elif(option == "e"):
-        shipNum = changeShipNum()
-        Menu()
+    if option == "q":
+        new_game()
+    elif option == "w":
+        boardSize = int(change_board_size())
+        menu()
+    elif option == "e":
+        shipNum = change_ship_num()
+        menu()
 
 
-def changeBoardSize():
+def change_board_size():
     """
     simply takes a value from input and assigns it to the BoardSize variable
     """
     print("please pick a number between 4 and 10 to change the game board")
     while True:
         new_size = input()
-        if(validate_int(new_size, 2, 4, 10)):
+        if validate_int(new_size, 2, 4, 10):
             break
         print("Please pick another number between 4 and 10 ")
     return new_size
 
 
-def changeShipNum():
+def change_ship_num():
     """        
     simply takes a value from input and assigns it to the BoardSize function
     """
     print("please pick a number between 1 and 9 to change ship number")
     while True:
         new_ship_num =  input()
-        if(validate_int(new_ship_num, 1, 1, 9)):
+        if validate_int(new_ship_num, 1, 1, 9):
             break
         print("Please pick another number between 1 and 9")
     return int(new_ship_num)
 
 
-def validate_int(input, length, min_value, max_value):
+def validate_int(int_for_validation, length, min_value, max_value):
     """
     validates interger values, checks if the input is an interger and
     that it doesnt exceed its target length, or value range
     """
     try:
-        if(str(input).isdigit() != True):
+        if str(int_for_validation).isdigit() is not True:
             raise ValueError(f"input must be an integer")
-        input = int(input)
-        if(len(str(input)) > length):
+        int_for_validation = int(int_for_validation)
+        if len(str(int_for_validation)) > length:
             raise ValueError(f"input has exceeded the maximum length of {length} chracters")
-        if(input < min_value):
+        if int_for_validation < min_value:
             raise ValueError(f"input cannot be less than {min_value}")
-        if(input > max_value):
+        if int_for_validation > max_value:
             raise ValueError(f"input cannot be more than {max_value}")
     except ValueError as e:
         print(f"Invalid: {e}\n")
@@ -191,7 +189,7 @@ def new_coordinates(x, y, board):
         return False
 
 
-def newGame():
+def new_game():
     """
     called when a new game is started, creates 2 boards, one for each player, and populates them with ships.
     then calls the play game function.
@@ -208,12 +206,16 @@ def newGame():
     for i in range(shipNum):
         populate_board(player_board)
         populate_board(computer_board)
+
     play_game(player_board, computer_board)
 
 
 
-def Main():
-    Menu()
+def main():
+    """
+    Main function
+    """
+    menu()
 
 
-Main()
+main()
