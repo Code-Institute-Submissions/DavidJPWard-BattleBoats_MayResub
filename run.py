@@ -17,9 +17,40 @@ def populate_board(board):
     already been made at that location and then adds it to thats boards list of ships
     """
     while True:
-        newship = random.randint(0, board.size-1),random.randint(0, board.size-1)
-        if newship not in board.ships:
-            board.ships.append(newship)
+        new_ship = random.randint(0, board.size-1),random.randint(0, board.size-1)
+        if new_ship not in board.ships:
+            board.ships.append(new_ship)
+            break
+    
+    while True:
+        new_big_ship_x = random.randint(0, board.size-1)
+        new_big_ship_y = random.randint(0, board.size-1)
+        new_big_ship = [new_big_ship_x,new_big_ship_y]
+
+        while True:
+            direction = random.randint(1,4)
+
+            if direction == 1:
+                if new_big_ship_x + 1 <= boardSize-1  and [new_big_ship_x + 1,new_big_ship_y] not in board.ships:
+                    break
+            elif direction == 2:
+                if new_big_ship_y + 1 <= boardSize-1  and [new_big_ship_x ,new_big_ship_y + 1] not in board.ships:
+                    break
+            elif direction == 3:
+                if new_big_ship_x - 1 >= 0  and [new_big_ship_x ,new_big_ship_y + 1] not in board.ships:
+                    break
+            elif direction == 4:
+                 if new_big_ship_y + 1 >= 0  and [new_big_ship_x ,new_big_ship_y + 1] not in board.ships:
+                     break
+
+
+
+
+
+
+        print(new_big_ship)
+        chode = input("press d")
+        if chode == "d":
             break
 
 

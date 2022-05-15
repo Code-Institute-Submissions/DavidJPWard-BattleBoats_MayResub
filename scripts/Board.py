@@ -1,9 +1,9 @@
 class Board():
-    def __init__(self, name, size, numOfShips, board_type):
+    def __init__(self, name, size, num_of_ships, board_type):
         self.name = name
         self.size = size
         self.board = [["." for x in range(size)] for y in range(size)]
-        self.numOfShips = numOfShips
+        self.num_of_ships = num_of_ships
         self.type = board_type
         self.ships = []
         self.guesses = []

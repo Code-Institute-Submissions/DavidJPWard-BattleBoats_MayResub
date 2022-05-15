@@ -1,14 +1,34 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# BattleBoats
 
-Welcome USER_NAME,
+battleboats is a terminal game, based on the origional battle ships game and written in python. 
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+a player can challenge an computer in finding the locations of all the enemies ships first by entering
+co-ordinates. 
 
-## Reminders
+[you can play the game through this link]
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+## How to play
+
+The player must first start the game from the main menu after setting the board size and/or number of ships or leaving
+them default
+
+the player will be prompted for their name, entering it will start the game. the player will be given a game board 
+with '@' symbols, denoting the position of the ships randomly generated for the player.
+
+the player will then be asked to enter an x and y co-ordinate ranging from 0 to the board size - 1, if a hit is 
+registered the respective co-ordinates on the board will be marked with an '!' if it misses the board will be marked with an 'X'. the computers chosen co-ordinates will update simultaneously
+
+this continues till all ships have been hit on either board, making the opponent the winner.
+
+
+## Features
+
+### Randomised and customisable game board
+
+players can set the number of ships and the size of the board from the game menu, upon starting the game the player will be given a randomised game board, making each game different.
+
+
+
 
 ## Creating the Heroku app
 
