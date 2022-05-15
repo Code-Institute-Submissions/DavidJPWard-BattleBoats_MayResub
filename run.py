@@ -11,50 +11,71 @@ boardSize = 5
 shipNum = 4
 
 
-def populate_board(board):
+def populate_board(board, num_of_subs, num_of_frigates):
     """
     randomly populates the game board with ships. it creates a ship, checks a ship hasnt not
     already been made at that location and then adds it to thats boards list of ships
     """
-    while True:
-        new_ship = random.randint(0, board.size-1),random.randint(0, board.size-1)
-        if new_ship not in board.ships:
-            board.ships.append(new_ship)
-            break
+    i = 0
+    while i <= num_of_subs:
+        new_sub = random.randint(0, board.size-1),random.randint(0, board.size-1)
+        if new_sub not in board.ships:
+            board.subs.append(new_sub)
+            board.ships.append(new_sub)
+        i += 1
     
-    while True:
+    i = 0
+    while i <= num_of_frigates :
         new_big_ship_x = random.randint(0, board.size-1)
         new_big_ship_y = random.randint(0, board.size-1)
-        new_big_ship = [new_big_ship_x,new_big_ship_y]
+        new_frigate = new_big_ship_x,new_big_ship_y
+        
+        if new_frigate not in board.ships :
+            timeout = 0
 
-        while True:
-            direction = random.randint(1,4)
+            while timeout < 4:
+                direction = random.randint(1,4)
 
-            if direction == 1:
-                if new_big_ship_x + 1 <= boardSize-1  and [new_big_ship_x + 1,new_big_ship_y] not in board.ships:
-                    break
-            elif direction == 2:
-                if new_big_ship_y + 1 <= boardSize-1  and [new_big_ship_x ,new_big_ship_y + 1] not in board.ships:
-                    break
-            elif direction == 3:
-                if new_big_ship_x - 1 >= 0  and [new_big_ship_x ,new_big_ship_y + 1] not in board.ships:
-                    break
-            elif direction == 4:
-                 if new_big_ship_y + 1 >= 0  and [new_big_ship_x ,new_big_ship_y + 1] not in board.ships:
-                     break
-
-
-
-
-
-
-        print(new_big_ship)
-        chode = input("press d")
-        if chode == "d":
-            break
-
-
-
+                if direction == 1:
+                    if new_big_ship_x + 1 <= boardSize-1  and (new_big_ship_x + 1,new_big_ship_y) not in board.ships:
+                        new_frigate_part_2 = new_big_ship_x + 1, new_big_ship_y
+                        board.frigates.append(new_frigate)
+                        board.ships.append(new_frigate)
+                        board.frigates.append(new_frigate_part_2)
+                        board.ships.append(new_frigate_part_2)
+                        i += 1
+                        break
+                elif direction == 2:
+                    if new_big_ship_y + 1 <= boardSize-1  and (new_big_ship_x ,new_big_ship_y + 1) not in board.ships:
+                        new_frigate_part_2 = new_big_ship_x, new_big_ship_y + 1
+                        board.frigates.append(new_frigate)
+                        board.ships.append(new_frigate)
+                        board.frigates.append(new_frigate_part_2)
+                        board.ships.append(new_frigate_part_2)
+                        i += 1
+                        break
+                elif direction == 3:
+                    if new_big_ship_x - 1 >= 0  and (new_big_ship_x - 1, new_big_ship_y) not in board.ships:
+                        new_frigate_part_2 = new_big_ship_x, new_big_ship_y - 1 
+                        board.frigates.append(new_frigate)
+                        board.ships.append(new_frigate)
+                        board.frigates.append(new_frigate_part_2)
+                        board.ships.append(new_frigate_part_2)
+                        i += 1
+                        break
+                elif direction == 4:
+                    if new_big_ship_y - 1 >= 0  and [new_big_ship_x ,new_big_ship_y - 1] not in board.ships:
+                        new_frigate_part_2 = new_big_ship_x - 1, new_big_ship_y
+                        board.frigates.append(new_frigate)
+                        board.ships.append(new_frigate)
+                        board.frigates.append(new_frigate_part_2)
+                        board.ships.append(new_frigate_part_2)
+                        i += 1
+                        break
+                
+                timeout += 1
+        
+            
 
 
 
@@ -234,9 +255,9 @@ def new_game():
     player_board.board.reverse()
     computer_board.board.reverse()
 
-    for i in range(shipNum):
-        populate_board(player_board)
-        populate_board(computer_board)
+    
+    populate_board(player_board,shipNum, 2)
+    populate_board(computer_board, shipNum, 2)
 
     play_game(player_board, computer_board)
 

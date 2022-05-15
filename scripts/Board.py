@@ -5,6 +5,8 @@ class Board():
         self.board = [["." for x in range(size)] for y in range(size)]
         self.num_of_ships = num_of_ships
         self.type = board_type
+        self.subs = []
+        self.frigates = []
         self.ships = []
         self.guesses = []
 
@@ -27,10 +29,10 @@ class Board():
         self.guesses.append([x,y])
         self.board[y][x] = "X"
 
-        if (x,y) in self.ships:
+        if (x,y) in self.subs:
             self.board[y][x] = "!"
             print(f"{enemy.name} has hit!")
             return True
         else:
-            print(f"{enemy.name} has missed.")
+            print(f"{enemy.name} has missed.\n")
             return False

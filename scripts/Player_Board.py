@@ -7,9 +7,16 @@ class Player_Board(Board):
             """
             cycles through the players ships and marks their location on the players board
             """
-            for i in self.ships:
+            print(f" subs: {self.subs} --- ships: {self.ships}")
+
+            for i in self.subs:
                 a, b = i
                 self.board[b][a] = "@"
+            
+            print(f" subs: {self.frigates} --- ships: {self.ships}")
+            for i in self.frigates:
+                a, b = i
+                self.board[b][a] = "#"
 
 
         
