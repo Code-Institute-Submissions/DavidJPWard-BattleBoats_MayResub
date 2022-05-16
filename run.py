@@ -24,7 +24,7 @@ def populate_board(board, num_of_subs, num_of_frigates):
 
     frigates are created by then making essentially a sub, but then picking
     a random direction for the second tile, if those co-ordinates are free
-    then both sets of co-ordinates are added to the list of ships and list 
+    then both sets of co-ordinates are added to the list of ships and list
     of frigates.
     """
     i = 0
@@ -34,7 +34,6 @@ def populate_board(board, num_of_subs, num_of_frigates):
             board.subs.append(new_sub)
             board.ships.append(new_sub)
         i += 1
-    
     i = 0
     while i < int(num_of_frigates):
         new_big_ship_x = random.randint(0, board.size-1)
@@ -133,7 +132,7 @@ def make_guess(board):
     """
     while True:
         while True:
-            x_guess = input(f"please choose an x coordinate(a number between 0 and {boardSize -1} ): ")
+            x_guess = input(f"please choose an x coordinate(a number between 0 and {boardSize -1}): ")
             if validate_int(x_guess, 1, 0, board.size - 1) is True:
                 break
             print("please pick again")
@@ -202,7 +201,7 @@ def change_ship_num():
     """
     print("how many subs would you like? (pick a number between 1 and 9)")
     while True:
-        new_sub_num =  input()
+        new_sub_num = input()
         if validate_int(new_sub_num, 1, 1, 9):
             break
         print("Please pick another number between 1 and 9")
@@ -216,6 +215,16 @@ def change_ship_num():
         print("Please pick another number between 1 and 4")
 
     return new_sub_num, new_frig_num
+
+
+def validate_str(string):
+    """
+    validates strings, making sure no numbers or special chracters are present
+    """
+    if string.isalpha():
+        return True
+    print("your name cannot contain numbers of special symbols")
+    return False
 
 
 def validate_int(int_for_validation, length, min_value, max_value):
@@ -248,7 +257,7 @@ def is_new_coordinates(x, y, board):
 
         return True
     else:
-        print(f"co-ordinates ({x}, {y}) have already been guessed, pick again")
+        print(f"co-ordinates ({x}, {y}) have already been guessed, pick again\n")
         return False
 
 
@@ -257,7 +266,11 @@ def new_game():
     called when a new game is started, creates 2 boards, one for each player, and populates them with ships.
     then calls the play game function.
     """
-    player_name = input("What is your name?: ")
+    while True:
+        player_name = input("What is your name?: ")
+        if validate_str(player_name):
+            break
+
     print("\n")
     shipNum = frig_num * 2 + sub_num
     player_board = Player_Board(player_name, boardSize, shipNum, "player")
@@ -265,7 +278,6 @@ def new_game():
     player_board.board.reverse()
     computer_board.board.reverse()
 
-    
     populate_board(player_board, sub_num, frig_num)
     populate_board(computer_board, sub_num, frig_num)
 
