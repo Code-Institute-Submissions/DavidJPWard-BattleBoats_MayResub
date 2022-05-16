@@ -15,28 +15,28 @@ co-ordinates.
 
 I want to create that is randomly generated for a different experience every playthrough.
 
-    Was this achieved?
-        Yes
-    How was this achieved?
-        random number generation is featured both for ship placement for the player and computer as well as
-        how the computer picks a set of co-ordinates, this means each game will be different, leaving little 
-        room to cheat
+Was this achieved?
+    Yes
+How was this achieved?
+    random number generation is featured both for ship placement for the player and computer as well as
+    how the computer picks a set of co-ordinates, this means each game will be different, leaving little 
+    room to cheat
 
 I want the game to have an element of customisability to the game
 
-    Was this achieved?
-        Yes
-    How was this achieved?
-        the player can pick the board size of the game and also change both the number of subs and frigates. the player 
-        also has the ability to enter their name.
+Was this achieved?
+    Yes
+How was this achieved?
+    the player can pick the board size of the game and also change both the number of subs and frigates. the player 
+    also has the ability to enter their name.
 
 i want to make a game with no bugs or errors present, giving the user a clean experience
 
-    Was this achieved?
-        Yes
-    How was this achieved?
-        took great care with making sure all logic errors have been resolved and have dedicated methods for validating
-        integer and string values and past guesses.
+Was this achieved?
+    Yes
+How was this achieved?
+    took great care with making sure all logic errors have been resolved and have dedicated methods for validating
+    integer and string values and past guesses.
 
 
 ## How to play
@@ -90,7 +90,11 @@ more balanced and enjoyable games
 
 i ran my code through pep8 validator and it came out with numerous styling errors.
 
-after going back and cleaning up the file i was only left with "line to long errors" 
+![pep8 before](/Images/pep8%20before.png)
+
+after going back and cleaning up the file i was only left with "line to0 long errors" 
+
+![pep8 after](/Images/pep8%20after.png)
 
 
 ### Manual Testing
@@ -117,44 +121,54 @@ when picking co-ordinates the numbers inputted by the player are put through the
 
 ## Bugs
 
-i wanted my co-ordinates to start from bottom left as you see it on the console however this caused me issues due to how messages are printed to the board, i sussed out that if i printed the board in reverse the feedback would be printed the right way however my input was wrong every time, this gave me a great deal of trouble even to the point of writing a small mock up of the logic so i could get a better idea of how it worked. i found the solution after a while and it was simple. the ships were being printed to the board in reverse ie "[y][x]" due to how the board was being printed, but the guesses were being inputted as "[x][y]" meaning they were being flipped. this has now been solved.
+i wanted my co-ordinates to start from bottom left as you see it on the console however this caused me issues due to how messages are printed to the board.
+
+ i sussed out that if i printed the board in reverse the feedback would be printed the right way however my input was wrong every time, this gave me a great deal of trouble even to the point of writing a small mock up of the logic (test.py) so i could get a better idea of how it worked. i found the solution after a while and it was simple. 
+ 
+ the ships were being printed to the board in reverse ie "[y][x]" due to how the board was being printed, but the guesses were being inputted as "[x][y]" meaning they were being flipped. this has now been solved.
 
 
 ## Deployment
 
 There were many steps to deploying this project to Heroku:
 
-    If I had installed any packages to Gitpod, I would need to add then to a list of requirements.
+1. If I had installed any packages to Gitpod, I would need to add then to a list of requirements.
 
-    To do this I would have typed pip3 freeze > requirements.txt and hit enter, this would update the requirements.txt file.
-    I'd need to commit and push this to Github.
-    Heroku will use this list to install the dependencies into the application before the project is run.
-    However, I didn't need to do this as I had no packages installed.
+- To do this I would have typed pip3 freeze > requirements.txt and hit enter, this would update the requirements.txt file.
+- I'd need to commit and push this to Github.
+- Heroku will use this list to install the dependencies into the application before the project is run.
+- However, I didn't need to do this as I had no packages installed.
 
-    I went over to my Heroku dashboard and clicked on 'create a new app'.
-    I chose a name for my app; every app must have a unique name so I couldn't call it hangman as this was already taken so I went for hang-the-guy.
-    Selected my region and clicked create app.
-    I then went to the tab at the top of the page and clicked on settings.
-    Some apps will include sensitive data in the gitpod workspace that isn't in the github repository because it has been deliberately protected in the gitnore.file. I didn't have any sensitive data to protect but if I had done, I would have needed to create a config var to allow Heroku access to this data.
+    2. I went over to my Heroku dashboard and clicked on 'create a new app'.
+    3. I chose a name for my app; every app must have a unique name so I couldn't call it hangman as this was already taken  so I went for hang-the-guy.
+    4. Selected my region and clicked create app.
+    5. I then went to the tab at the top of the page and clicked on settings.
+    6. Some apps will include sensitive data in the gitpod workspace that isn't in the github repository because it has been deliberately protected in the gitnore.file. I didn't have any sensitive data to protect but if I had done, I would have needed to create a config var to allow Heroku access to this data.
 
-    To do this, I would have clicked reveal config vars.
-    Filled in the key for example: CREDS
-    Then copy and pasted the contents of that 'CREDS' file into the value field and clicked add.
+    - To do this, I would have clicked reveal config vars.
+    - Filled in the key for example: CREDS
+    - Then copy and pasted the contents of that 'CREDS' file into the value field and clicked add.
 
-    I added the buildpacks needed by clicking on the buildpack button.
+    7. I added the buildpacks needed by clicking on the buildpack button.
 
-    Here I selected python and pressed save changes.
-    Then repeated the same process but selected nodejs this time.
-    making sure it was done in that order with python at the top and nodejs under.
+    - Here I selected python and pressed save changes.
+    - Then repeated the same process but selected nodejs this time.
+    - making sure it was done in that order with python at the top and nodejs under.
 
-    I scrolled back up to the tab at the top and clicked deploy.
-    I selected github as the deployment method and clicked connect to github.
-    Once this is selected, I then searched for my github repository name, and connected to the correct repository.
-    Then I scrolled down, here there were two options.
+    8. I scrolled back up to the tab at the top and clicked deploy.
+    9. I selected github as the deployment method and clicked connect to github.
+    10. Once this is selected, I then searched for my github repository name, and connected to the correct repository.
+    11. Then I scrolled down, here there were two options.
 
-    The first option being to enable automatic deployment, which means that Heroku will rebuild the app every time I pushed a change to github.
-    The other option being to manually deploy, which is the choice I went for with this project.
+    - The first option being to enable automatic deployment, which means that Heroku will rebuild the app every time I pushed a change to github.
+    - The other option being to manually deploy, which is the choice I went for with this project.
 
-    When all the code is received from github there is a view button that it a link to the running app, I clicked this to make sure everything was running as expected.
+    12. When all the code is received from github there is a view button that it a link to the running app, I clicked this to make sure everything was running as expected.
 
 ## Credits
+
+- [draw.io](https://draw.io) was used to create my flowchart.
+
+- [pep8](https://pep8online.com) was used to validate the code.
+
+- [google](https://google.com) was used to look up various coding questions.
