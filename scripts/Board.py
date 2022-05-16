@@ -1,3 +1,10 @@
+"""
+this is the "Board" abstract class which holds all the methods and variables
+for the board.two classes inherit from here, player board and enemy board,
+which hold methods only used by those classes.
+"""
+
+
 class Board():
     def __init__(self, name, size, num_of_ships, board_type):
         self.name = name
@@ -14,25 +21,26 @@ class Board():
         """
         function that prints the game board
         """
-        print(f"{self.name}'s Board")
+
+        print(f"\n{self.name}'s Board")
         for row in reversed(self.board):
             print(" "+" ".join(row))
 
-
     def guess_against(self, x, y, enemy):
         """
-        function that is called when making a guess against this board, notifies if it was a 
-        hit or a miss and returns true or false respectively
+        function that is called when making a guess against this board, it
+        prints the guess, identifies if it was a hit or a miss and returns
+        true or false respectively
         """
-        x = int(x)
-        y = int(y)
-        self.guesses.append([x,y])
+        x, y = int(x), int(y)
+        self.guesses.append([x, y])
         self.board[y][x] = "X"
+        print(f"{enemy.name} has guessed [{x}, {y}]")
 
-        if (x,y) in self.subs:
+        if (x, y) in self.ships:
             self.board[y][x] = "!"
             print(f"{enemy.name} has hit!")
             return True
         else:
-            print(f"{enemy.name} has missed.\n")
+            print(f"{enemy.name} has missed.")
             return False

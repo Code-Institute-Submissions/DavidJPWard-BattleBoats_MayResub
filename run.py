@@ -1,6 +1,7 @@
 """
-this is battle boats, this file contains the functions to play the game as well as an abstract 
-class named playerboard and two inherited classes for a human and computer player.
+this is battle boats, this file contains the functions to play the game as
+well as an abstract class named playerboard and two inherited classes for
+a human and computer player.
 """
 import random
 
@@ -8,36 +9,46 @@ from scripts.Player_Board import Player_Board
 from scripts.Computer_Board import Computer_Board
 
 boardSize = 5
-shipNum = 4
+sub_num = 4
+frig_num = 2
 
 
 def populate_board(board, num_of_subs, num_of_frigates):
     """
-    randomly populates the game board with ships. it creates a ship, checks a ship hasnt not
-    already been made at that location and then adds it to thats boards list of ships
+    randomly populates the game board with subs and frigates.
+
+    subs are created by checking a random set of co-ordinates on the board
+    is free, if yes, that location is added to a list of ships(used for
+    logic checking) and a list of subs(used to mark its location on the
+    board).
+
+    frigates are created by then making essentially a sub, but then picking
+    a random direction for the second tile, if those co-ordinates are free
+    then both sets of co-ordinates are added to the list of ships and list 
+    of frigates.
     """
     i = 0
-    while i <= num_of_subs:
-        new_sub = random.randint(0, board.size-1),random.randint(0, board.size-1)
+    while i < int(num_of_subs):
+        new_sub = random.randint(0, board.size-1), random.randint(0, board.size-1)
         if new_sub not in board.ships:
             board.subs.append(new_sub)
             board.ships.append(new_sub)
         i += 1
     
     i = 0
-    while i <= num_of_frigates :
+    while i < int(num_of_frigates):
         new_big_ship_x = random.randint(0, board.size-1)
         new_big_ship_y = random.randint(0, board.size-1)
-        new_frigate = new_big_ship_x,new_big_ship_y
-        
-        if new_frigate not in board.ships :
+        new_frigate = new_big_ship_x, new_big_ship_y
+
+        if new_frigate not in board.ships:
             timeout = 0
 
             while timeout < 4:
-                direction = random.randint(1,4)
+                direction = random.randint(1, 4)
 
                 if direction == 1:
-                    if new_big_ship_x + 1 <= boardSize-1  and (new_big_ship_x + 1,new_big_ship_y) not in board.ships:
+                    if new_big_ship_x + 1 <= boardSize-1 and (new_big_ship_x + 1, new_big_ship_y) not in board.ships:
                         new_frigate_part_2 = new_big_ship_x + 1, new_big_ship_y
                         board.frigates.append(new_frigate)
                         board.ships.append(new_frigate)
@@ -46,7 +57,7 @@ def populate_board(board, num_of_subs, num_of_frigates):
                         i += 1
                         break
                 elif direction == 2:
-                    if new_big_ship_y + 1 <= boardSize-1  and (new_big_ship_x ,new_big_ship_y + 1) not in board.ships:
+                    if new_big_ship_y + 1 <= boardSize-1 and (new_big_ship_x, new_big_ship_y + 1) not in board.ships:
                         new_frigate_part_2 = new_big_ship_x, new_big_ship_y + 1
                         board.frigates.append(new_frigate)
                         board.ships.append(new_frigate)
@@ -55,16 +66,7 @@ def populate_board(board, num_of_subs, num_of_frigates):
                         i += 1
                         break
                 elif direction == 3:
-                    if new_big_ship_x - 1 >= 0  and (new_big_ship_x - 1, new_big_ship_y) not in board.ships:
-                        new_frigate_part_2 = new_big_ship_x, new_big_ship_y - 1 
-                        board.frigates.append(new_frigate)
-                        board.ships.append(new_frigate)
-                        board.frigates.append(new_frigate_part_2)
-                        board.ships.append(new_frigate_part_2)
-                        i += 1
-                        break
-                elif direction == 4:
-                    if new_big_ship_y - 1 >= 0  and [new_big_ship_x ,new_big_ship_y - 1] not in board.ships:
+                    if new_big_ship_x - 1 >= 0 and (new_big_ship_x - 1, new_big_ship_y) not in board.ships:
                         new_frigate_part_2 = new_big_ship_x - 1, new_big_ship_y
                         board.frigates.append(new_frigate)
                         board.ships.append(new_frigate)
@@ -72,23 +74,28 @@ def populate_board(board, num_of_subs, num_of_frigates):
                         board.ships.append(new_frigate_part_2)
                         i += 1
                         break
-                
+                elif direction == 4:
+                    if new_big_ship_y - 1 >= 0 and (new_big_ship_x, new_big_ship_y - 1) not in board.ships:
+                        new_frigate_part_2 = new_big_ship_x, new_big_ship_y - 1
+                        board.frigates.append(new_frigate)
+                        board.ships.append(new_frigate)
+                        board.frigates.append(new_frigate_part_2)
+                        board.ships.append(new_frigate_part_2)
+                        i += 1
+                        break
                 timeout += 1
-        
-            
-
 
 
 def play_game(player_board, computer_board):
     """
-    called when the game has finished setting up, calls for guesses to be continously 
-    entered via a loop and breaks when either players score equals the number of ships. 
+    called when the game has finished setting up, calls for guesses to be continously
+    entered via a loop and breaks when either players score equals the number of ships.
     """
     player_board.display_player_ships()
 
     player_score = 0
     computer_score = 0
-    while player_score < shipNum and computer_score < shipNum:
+    while player_score < player_board.num_of_ships and computer_score < computer_board.num_of_ships:
         computer_board.print_board()
         player_board.print_board()
 
@@ -98,12 +105,10 @@ def play_game(player_board, computer_board):
 
         print("\n")
 
-        x,y = make_guess(computer_board)
+        x, y = make_guess(computer_board)
         if computer_board.guess_against(x, y, player_board) is True:
             player_score += 1
-        
-        if player_board.guess_against(random.randint(0,boardSize-1),
-                                    random.randint(0,boardSize-1), computer_board) is True:
+        if player_board.guess_against(random.randint(0, boardSize-1), random.randint(0, boardSize-1), computer_board) is True:
             computer_score += 1
 
     computer_board.print_board()
@@ -111,9 +116,9 @@ def play_game(player_board, computer_board):
 
     print("\n")
 
-    if player_score >= shipNum:
+    if player_score >= player_board.num_of_ships:
         print(f"{player_board.name} has won\n")
-    elif computer_score >= shipNum:
+    elif computer_score >= computer_board.num_of_ships:
         print(f"{computer_board.name} has won\n")
     else:
         print("game was a draw")
@@ -123,31 +128,26 @@ def play_game(player_board, computer_board):
 
 def make_guess(board):
     """
-    function that creates a tuple out of the inputs made by the player, checks 
+    function that creates a tuple out of the inputs made by the player, checks
     they are valid and returns it
     """
     while True:
         while True:
-            x_guess = input(f"please choose an x coordinate(a number between 0 and {boardSize -1}): ")
-            if validate_int(x_guess, 1, 0, board.size -1) is True:
+            x_guess = input(f"please choose an x coordinate(a number between 0 and {boardSize -1} ): ")
+            if validate_int(x_guess, 1, 0, board.size - 1) is True:
                 break
             print("please pick again")
 
         while True:
             y_guess = input(f"please choose an y coordinate(a number between 0 and {boardSize-1}): ")
-            if validate_int(y_guess, 1, 0, board.size -1) is True:
+            if validate_int(y_guess, 1, 0, board.size - 1) is True:
                 break
             print("please pick again")
 
-        if new_coordinates(x_guess, y_guess, board) is True:
+        if is_new_coordinates(x_guess, y_guess, board) is True:
             break
 
-    return x_guess, y_guess    
-        
-    
-    
-
-
+    return x_guess, y_guess
 
 
 def menu():
@@ -155,13 +155,14 @@ def menu():
     Main menu of the game, here you can change settings and start a game.
     """
     global boardSize
-    global shipNum
+    global sub_num
+    global frig_num
 
-    print("           "+"-" * 35)
+    print("           " + "-" * 35)
     print("               Welcome to BATTLE BOATS")
-    print(f"           board size: {boardSize}, number of ships: {shipNum}")
-    #print(f"           current score -- player: {player_score}   computer: {computer_score}")
-    print("           " +"-" * 35)
+    print(f"           board size: {boardSize}, ships: {sub_num} subs, {frig_num} frigates.")
+
+    print("           " + "-" * 35)
     print("q: Start Game    w: Change Board Size    e: Change Ship Number \n")
 
     option = input("Please choose and option: ").lower()
@@ -171,14 +172,14 @@ def menu():
             break
         print("Invalid option, please press q, w or e\n")
         option = input("Please choose and option: ").lower()
-    
+
     if option == "q":
         new_game()
     elif option == "w":
         boardSize = int(change_board_size())
         menu()
     elif option == "e":
-        shipNum = change_ship_num()
+        sub_num, frig_num = change_ship_num()
         menu()
 
 
@@ -196,16 +197,25 @@ def change_board_size():
 
 
 def change_ship_num():
-    """        
+    """
     simply takes a value from input and assigns it to the BoardSize function
     """
-    print("please pick a number between 1 and 9 to change ship number")
+    print("how many subs would you like? (pick a number between 1 and 9)")
     while True:
-        new_ship_num =  input()
-        if validate_int(new_ship_num, 1, 1, 9):
+        new_sub_num =  input()
+        if validate_int(new_sub_num, 1, 1, 9):
             break
         print("Please pick another number between 1 and 9")
-    return int(new_ship_num)
+
+    print("how many frigates would you like? (pick a number between 1 and 4)")
+
+    while True:
+        new_frig_num = input()
+        if validate_int(new_frig_num, 1, 1, 4):
+            break
+        print("Please pick another number between 1 and 4")
+
+    return new_sub_num, new_frig_num
 
 
 def validate_int(int_for_validation, length, min_value, max_value):
@@ -228,11 +238,12 @@ def validate_int(int_for_validation, length, min_value, max_value):
         return False
     return True
 
-def new_coordinates(x, y, board):
+
+def is_new_coordinates(x, y, board):
     """
     checks if a set of co ordinates have already been guessed, returns true if they were new.
     """
-    entry = [int(x),int(y)]
+    entry = [int(x), int(y)]
     if entry not in board.guesses:
 
         return True
@@ -246,21 +257,19 @@ def new_game():
     called when a new game is started, creates 2 boards, one for each player, and populates them with ships.
     then calls the play game function.
     """
-
     player_name = input("What is your name?: ")
     print("\n")
-    
+    shipNum = frig_num * 2 + sub_num
     player_board = Player_Board(player_name, boardSize, shipNum, "player")
     computer_board = Computer_Board("computer", boardSize, shipNum, "computer")
     player_board.board.reverse()
     computer_board.board.reverse()
 
     
-    populate_board(player_board,shipNum, 2)
-    populate_board(computer_board, shipNum, 2)
+    populate_board(player_board, sub_num, frig_num)
+    populate_board(computer_board, sub_num, frig_num)
 
     play_game(player_board, computer_board)
-
 
 
 def main():
