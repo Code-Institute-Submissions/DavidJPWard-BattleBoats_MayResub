@@ -43,10 +43,10 @@ co-ordinates.
  
 - The player must first start the game from the main menu after setting the board size and/or number of subs and frigates or leaving them default
  
-- the player will be prompted for their name, entering it will start the game. the player will be given a game board
+- The player will be prompted for their name, entering it will start the game. the player will be given a game board
 with '@' symbols denoting subs and '##' denoting frigates, the position of these ships are randomly generated for the player.
  
-- the player will then be asked to enter an x and y coordinate ranging from 0 to the board size - 1, if a hit is
+- The player will then be asked to enter an x and y coordinate ranging from 0 to the board size - 1, if a hit is
 registered the respective coordinates on the board will be marked with an '!' if it misses the board will be marked with an 'X'. the computers chosen coordinates will update simultaneously
  
 - this continues till all ships have been hit on either board, making the opponent the winner.
@@ -56,32 +56,32 @@ registered the respective coordinates on the board will be marked with an '!' if
  
 ### Randomised and customisable game board
  
-- players can set the number of ships and the size of the board from the game menu, upon starting the game the player will be given a randomised game board, making each game different.
+- Players can set the number of ships and the size of the board from the game menu, upon starting the game the player will be given a randomised game board, making each game different.
  
 ### Big and small ships
  
-- players can set both the number of subs(small ships) and frigates(big boats).
+- Players can set both the number of subs(small ships) and frigates(big boats).
  
 ### Thorough data validation
  
-- validation is used on all values entered by the player, leaving very little room for error.
+- Validation is used on all values entered by the player, leaving very little room for error.
  
 ### Score tracking
  
-- players are notified if they have hit or missed on each turn and previous guesses from prior rounds, and scores are tallied at the end of each round.
+- Players are notified if they have hit or missed on each turn and previous guesses from prior rounds, and scores are tallied at the end of each round.
  
 ### Visual Feedback
  
-- hits and missed are marked on the board that is printed out to the terminal
+- Hits and missed are marked on the board that is printed out to the terminal
  
  
 ## Upcoming features
  
-- giving the player information on whether they have hit a sub or frigate
+- Giving the player information on whether they have hit a sub or frigate
  
-- power-ups, such as the ability to hit more than one tile per round and scanning for enemy ships
+- Power-ups, such as the ability to hit more than one tile per round and scanning for enemy ships
  
-- game balance that automatically sets a certain number of ships for a corresponding game board size allowing for
+- Game balance that automatically sets a certain number of ships for a corresponding game board size allowing for
 more balanced and enjoyable games
  
 ## Testing
@@ -92,14 +92,14 @@ I ran my code through pep8 validator and it came out with numerous styling error
  
 ![pep8 before](/Images/pep8%20before.png)
  
-after going back and cleaning up the file i was only left with "line to0 long errors"
+After going back and cleaning up the file i was only left with "line too long errors"
  
 ![pep8 after](/Images/pep8%20after.png)
  
  
 ### Manual Testing
  
-i checked all areas where input is required from the player to make sure the results are expected
+I checked all areas where input is required from the player to make sure the results are expected
  
 ### Main menu
  
@@ -121,9 +121,9 @@ When picking coordinates the numbers inputted by the player are put through the 
  
 ## Bugs
  
-i wanted my coordinates to start from bottom left as you see it on the console however this caused me issues due to how messages are printed to the board.
+I wanted my coordinates to start from bottom left as you see it on the console however this caused me issues due to how messages are printed to the board.
  
- i sussed out that if i printed the board in reverse the feedback would be printed the right way however my input was wrong every time, this gave me a great deal of trouble even to the point of writing a small mock up of the logic (test.py) so i could get a better idea of how it worked. I found the solution after a while and it was simple.
+ I sussed out that if i printed the board in reverse the feedback would be printed the right way however my input was wrong every time, this gave me a great deal of trouble even to the point of writing a small mock up of the logic (test.py) so i could get a better idea of how it worked. I found the solution after a while and it was simple.
  
  The ships were being printed to the board in reverse i.e. "[y][x]" due to how the board was being printed, but the guesses were being inputted as "[x][y]" meaning they were being flipped. This has now been solved.
  
