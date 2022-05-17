@@ -13,7 +13,7 @@ co-ordinates.
  
 ## Objectives
  
-I want to create a game that is randomly generated for a different experience every playthrough.
+1. I want to create a game that is randomly generated for a different experience every playthrough.
  
 - Was this achieved?
     - Yes
@@ -22,7 +22,7 @@ I want to create a game that is randomly generated for a different experience ev
     how the computer picks a set of coordinates, this means each game will be different, leaving little
     room to cheat
  
-I want the game to have an element of customizability to the game
+2. I want the game to have an element of customizability to the game
  
 - Was this achieved?
     - Yes
@@ -30,7 +30,7 @@ I want the game to have an element of customizability to the game
     - The player can pick the board size of the game and also change both the number of subs and frigates. the player
     also has the ability to enter their name.
  
-I want to make a game with no bugs or errors present, giving the user a clean experience
+3. I want to make a game with no bugs or errors present, giving the user a clean experience
  
 - Was this achieved?
     - Yes
