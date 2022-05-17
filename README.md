@@ -5,7 +5,7 @@ Battleboats is a terminal game, based on the original battleships game and writt
 a player can challenge an computer in finding the locations of all the enemies ships first by entering
 co-ordinates.
  
-[you can play the game through this link]
+[you can play the game through this link](https://battle-boats.herokuapp.com/)
  
 ## Game flow
  
@@ -58,7 +58,7 @@ registered the respective coordinates on the board will be marked with an '!' if
  
 - Players can set the number of ships and the size of the board from the game menu, upon starting the game the player will be given a randomised game board, making each game different.
 
-![randomised gameboard](/Images/features%20randomisation.png)
+![randomised game board](/Images/features%20randomisation.png)
  
 ### Big and small ships
  
@@ -79,7 +79,7 @@ registered the respective coordinates on the board will be marked with an '!' if
  
 ### Visual Feedback
  
-- Hits and missed are marked on the board that is printed out to the terminal
+- Hits and misses are marked on the board that is printed out to the terminal
 
 ![visual feedback](/Images/features%20v5s4a3%20feedbac2.png) 
  
@@ -170,10 +170,10 @@ There were many steps to deploying this project to Heroku:
 10. Once this is selected, I then searched for my github repository name, and connected to the correct repository.
 11. Then I scrolled down, here there were two options.
  
-- The first option being to enable automatic deployment, which means that Heroku will rebuild the app every time I pushed a change to github.
+- The first option is to enable automatic deployment, which means that Heroku will rebuild the app every time I pushed a change to github.
 - The other option being to manually deploy, which is the choice I went for with this project.
  
-12. When all the code is received from github there is a view button that it a link to the running app, I clicked this to make sure everything was running as expected.
+12. When all the code is received from github there is a view button that is a link to the running app, I clicked this to make sure everything was running as expected.
  
 ## Credits
  
