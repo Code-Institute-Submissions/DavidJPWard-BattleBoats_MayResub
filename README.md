@@ -150,7 +150,7 @@ There were many steps to deploying this project to Heroku:
 - However, I didn't need to do this as I had no packages installed.
  
 2. I went over to my Heroku dashboard and clicked on 'create a new app'.
-3. I chose a name for my app; every app must have a unique name so I couldn't call it hangman as this was already taken  so I went for hang-the-guy.
+3. I chose a name for my app; every app must have a unique name, battle-boats had not been taken
 4. Selected my region and clicked create app.
 5. I then went to the tab at the top of the page and clicked on settings.
 6. Some apps will include sensitive data in the gitpod workspace that isn't in the github repository because it has been deliberately protected in the gitignore.file. I didn't have any sensitive data to protect but if I had done, I would have needed to create a config var to allow Heroku access to this data.
