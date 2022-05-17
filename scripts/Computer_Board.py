@@ -14,3 +14,4 @@ class Computer_Board(Board):
             of guesses already made.
             """
             print(f"previous guesses: {self.guesses}")
+            return len(self.guesses)

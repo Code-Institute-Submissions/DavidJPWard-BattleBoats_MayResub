@@ -25,6 +25,8 @@ class Board():
         print(f"\n{self.name}'s Board")
         for row in reversed(self.board):
             print(" "+" ".join(row))
+        if self.type == "player":
+            print("^y x-> ")
 
     def guess_against(self, x, y, enemy):
         """

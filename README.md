@@ -57,23 +57,31 @@ registered the respective coordinates on the board will be marked with an '!' if
 ### Randomised and customisable game board
  
 - Players can set the number of ships and the size of the board from the game menu, upon starting the game the player will be given a randomised game board, making each game different.
+
+![randomised gameboard](/Images/features%20randomisation.png)
  
 ### Big and small ships
  
 - Players can set both the number of subs(small ships) and frigates(big boats).
+
+![big and small ships](/Images/features%20ship%20sizes.png)
  
 ### Thorough data validation
  
-- Validation is used on all values entered by the player, leaving very little room for error.
- 
+- Validation is used on all values entered by the player, leaving very little room for error. this is shown in greater detail further in the documentation
+
+
 ### Score tracking
  
 - Players are notified if they have hit or missed on each turn and previous guesses from prior rounds, and scores are tallied at the end of each round.
+
+![score tracking](/Images/features%20score.png)
  
 ### Visual Feedback
  
 - Hits and missed are marked on the board that is printed out to the terminal
- 
+
+![visual feedback](/Images/features%20v5s4a3%20feedbac2.png) 
  
 ## Upcoming features
  
@@ -92,7 +100,7 @@ I ran my code through pep8 validator and it came out with numerous styling error
  
 ![pep8 before](/Images/pep8%20before.png)
  
-After going back and cleaning up the file i was only left with "line too long errors"
+After going back and cleaning up the file I was only left with "line too long errors"
  
 ![pep8 after](/Images/pep8%20after.png)
  
@@ -123,10 +131,12 @@ When picking coordinates the numbers inputted by the player are put through the 
  
 I wanted my coordinates to start from bottom left as you see it on the console however this caused me issues due to how messages are printed to the board.
  
- I sussed out that if i printed the board in reverse the feedback would be printed the right way however my input was wrong every time, this gave me a great deal of trouble even to the point of writing a small mock up of the logic (test.py) so i could get a better idea of how it worked. I found the solution after a while and it was simple.
+ I sussed out that if I printed the board in reverse the feedback would be printed the right way however my input was wrong every time, this gave me a great deal of trouble even to the point of writing a small mock up of the logic (test.py) so I could get a better idea of how it worked. I found the solution after a while and it was simple.
  
  The ships were being printed to the board in reverse i.e. "[y][x]" due to how the board was being printed, but the guesses were being inputted as "[x][y]" meaning they were being flipped. This has now been solved.
- 
+
+
+![testing](/Images/testDOTpy.png)
  
 ## Deployment
  
