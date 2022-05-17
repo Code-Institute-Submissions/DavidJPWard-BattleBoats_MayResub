@@ -41,47 +41,47 @@ How was this achieved?
 
 ## How to play
 
-The player must first start the game from the main menu after setting the board size and/or number of subs and frigates or leaving them default
+- The player must first start the game from the main menu after setting the board size and/or number of subs and frigates or leaving them default
 
-the player will be prompted for their name, entering it will start the game. the player will be given a game board 
+- the player will be prompted for their name, entering it will start the game. the player will be given a game board 
 with '@' symbols denoting subs and '##' denoting frigates, the position of these ships are randomly generated for the player.
 
-the player will then be asked to enter an x and y co-ordinate ranging from 0 to the board size - 1, if a hit is 
+- the player will then be asked to enter an x and y co-ordinate ranging from 0 to the board size - 1, if a hit is 
 registered the respective co-ordinates on the board will be marked with an '!' if it misses the board will be marked with an 'X'. the computers chosen co-ordinates will update simultaneously
 
-this continues till all ships have been hit on either board, making the opponent the winner.
+- this continues till all ships have been hit on either board, making the opponent the winner.
 
 
 ## Features
 
 ### Randomised and customisable game board
 
-players can set the number of ships and the size of the board from the game menu, upon starting the game the player will be given a randomised game board, making each game different.
+- players can set the number of ships and the size of the board from the game menu, upon starting the game the player will be given a randomised game board, making each game different.
 
 ### Big and small ships
 
-players can set both the number of subs(small ships) and frigates(big boats).
+- players can set both the number of subs(small ships) and frigates(big boats).
 
 ### Thorough data validation
 
-validation is used on all values entered by the player, leaving very little room for error.
+- validation is used on all values entered by the player, leaving very little room for error.
 
 ### Score tracking
 
-players are notified if they have hit or missed on each turn and previous guesses from prior rounds, and scores are tallied at the end of each round.
+- players are notified if they have hit or missed on each turn and previous guesses from prior rounds, and scores are tallied at the end of each round.
 
 ### Visual Feedback
 
-hits and missed are marked on the board that is printed out to the terminal
+- hits and missed are marked on the board that is printed out to the terminal
 
 
 ## Upcoming features
 
-giving the player infomation on whether they have hit a sub or frigate
+- giving the player infomation on whether they have hit a sub or frigate
 
-power-ups, such as the ability to hit more than one tile per round and scanning for enmy ships
+- power-ups, such as the ability to hit more than one tile per round and scanning for enmy ships
 
-game balance that automatically sets a certain number of ships for a corrosponding game board size allowing for 
+- game balance that automatically sets a certain number of ships for a corrosponding game board size allowing for 
 more balanced and enjoyable games
 
 ## Testing
@@ -139,31 +139,31 @@ There were many steps to deploying this project to Heroku:
 - Heroku will use this list to install the dependencies into the application before the project is run.
 - However, I didn't need to do this as I had no packages installed.
 
-    2. I went over to my Heroku dashboard and clicked on 'create a new app'.
-    3. I chose a name for my app; every app must have a unique name so I couldn't call it hangman as this was already taken  so I went for hang-the-guy.
-    4. Selected my region and clicked create app.
-    5. I then went to the tab at the top of the page and clicked on settings.
-    6. Some apps will include sensitive data in the gitpod workspace that isn't in the github repository because it has been deliberately protected in the gitnore.file. I didn't have any sensitive data to protect but if I had done, I would have needed to create a config var to allow Heroku access to this data.
+2. I went over to my Heroku dashboard and clicked on 'create a new app'.
+3. I chose a name for my app; every app must have a unique name so I couldn't call it hangman as this was already taken  so I went for hang-the-guy.
+4. Selected my region and clicked create app.
+5. I then went to the tab at the top of the page and clicked on settings.
+6. Some apps will include sensitive data in the gitpod workspace that isn't in the github repository because it has been deliberately protected in the gitnore.file. I didn't have any sensitive data to protect but if I had done, I would have needed to create a config var to allow Heroku access to this data.
 
-    - To do this, I would have clicked reveal config vars.
-    - Filled in the key for example: CREDS
-    - Then copy and pasted the contents of that 'CREDS' file into the value field and clicked add.
+- To do this, I would have clicked reveal config vars.
+- Filled in the key for example: CREDS
+- Then copy and pasted the contents of that 'CREDS' file into the value field and clicked add.
 
-    7. I added the buildpacks needed by clicking on the buildpack button.
+7. I added the buildpacks needed by clicking on the buildpack button.
 
-    - Here I selected python and pressed save changes.
-    - Then repeated the same process but selected nodejs this time.
-    - making sure it was done in that order with python at the top and nodejs under.
+- Here I selected python and pressed save changes.
+- Then repeated the same process but selected nodejs this time.
+- making sure it was done in that order with python at the top and nodejs under.
 
-    8. I scrolled back up to the tab at the top and clicked deploy.
-    9. I selected github as the deployment method and clicked connect to github.
-    10. Once this is selected, I then searched for my github repository name, and connected to the correct repository.
-    11. Then I scrolled down, here there were two options.
+8. I scrolled back up to the tab at the top and clicked deploy.
+9. I selected github as the deployment method and clicked connect to github.
+10. Once this is selected, I then searched for my github repository name, and connected to the correct repository.
+11. Then I scrolled down, here there were two options.
 
-    - The first option being to enable automatic deployment, which means that Heroku will rebuild the app every time I pushed a change to github.
-    - The other option being to manually deploy, which is the choice I went for with this project.
+- The first option being to enable automatic deployment, which means that Heroku will rebuild the app every time I pushed a change to github.
+- The other option being to manually deploy, which is the choice I went for with this project.
 
-    12. When all the code is received from github there is a view button that it a link to the running app, I clicked this to make sure everything was running as expected.
+12. When all the code is received from github there is a view button that it a link to the running app, I clicked this to make sure everything was running as expected.
 
 ## Credits
 
