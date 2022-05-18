@@ -100,9 +100,12 @@ I ran my code through pep8 validator and it came out with numerous styling error
  
 ![pep8 before](/Images/pep8%20before.png)
  
-After going back and cleaning up the file I was only left with "line too long errors"
+After going back and cleaning up the file I was only left with "line too long errors" which I struggled with repairing as I didnt have the skill set to do it in a way that didnt raise more errors. 
  
-![pep8 after](/Images/pep8%20after.png)
+![line shortening](/Images/line%20short.png)
+
+![pep8 after](/Images/linto.png)
+
  
  
 ### Manual Testing
